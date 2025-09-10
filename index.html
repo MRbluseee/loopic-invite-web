@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kết bạn trên Loop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            text-align: center; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container { 
+            max-width: 400px; 
+            margin: 0 auto; 
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        h1 { 
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        p { 
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .btn { 
+            background: rgba(255,255,255,0.2); 
+            color: white; 
+            padding: 15px 30px; 
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover { 
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        .btn-primary {
+            background: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">📸</div>
+        <h1>Kết bạn trên Loop</h1>
+        <p>Bạn đã được mời kết bạn trên Loop!<br>Hãy tải app để xem ảnh và kết nối với bạn bè.</p>
+        <a href="#" class="btn btn-primary" onclick="openApp()">Mở App</a>
+        <a href="#" class="btn" onclick="downloadApp()">Tải App</a>
+    </div>
+
+    <script>
+        function openApp() {
+            const userId = getUserId();
+            // Thử mở app trước
+            window.location.href = 'loopic://friend-request/' + userId;
+            
+            // Fallback sau 2 giây
+            setTimeout(() => {
+                downloadApp();
+            }, 2000);
+        }
+        
+        function downloadApp() {
+            // Detect platform và redirect
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                window.location.href = 'https://apps.apple.com/app/loopic';
+            } else if (/Android/.test(navigator.userAgent)) {
+                window.location.href = 'https://play.google.com/store/apps/details?id=com.loopic.app';
+            } else {
+                alert('Vui lòng tải app từ App Store hoặc Google Play');
+            }
+        }
+        
+        function getUserId() {
+            // Lấy userId từ URL
+            const path = window.location.pathname;
+            return path.split('/').pop() || 'unknown';
+        }
+    </script>
+</body>
+</html>
