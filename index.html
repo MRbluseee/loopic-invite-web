@@ -66,11 +66,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo">📸</div>
-        <h1>Kết bạn trên Loop</h1>
-        <p>Bạn đã được mời kết bạn trên Loop!<br>Hãy tải app để xem ảnh và kết nối với bạn bè.</p>
-        <a href="#" class="btn btn-primary" onclick="openApp()">Mở App</a>
-        <a href="#" class="btn" onclick="downloadApp()">Tải App</a>
+        <div class="logo">
+            <img src="https://sgp1.digitaloceanspaces.com/photo/photos/b842294f-670b-4e8e-ab50-afbdd18e98b4/1757486239831_b842294f-670b-4e8e-ab50-afbdd18e98b4.jpg" alt="Loop Logo" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
+        </div>
+        <h1>Add me on Loop</h1>
+        <p>You've been invited to connect on Loop!<br>Download the app to see photos and connect with friends.</p>
+        <a href="#" class="btn btn-primary" onclick="openApp()">Open App</a>
+        <a href="#" class="btn" onclick="downloadApp()">Download App</a>
     </div>
 
     <script>
@@ -88,11 +90,11 @@
         function downloadApp() {
             // Detect platform và redirect
             if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-                window.location.href = 'https://apps.apple.com/app/loopic';
+                window.location.href = 'https://apps.apple.com/vn/app/loopic/id6747373355';
             } else if (/Android/.test(navigator.userAgent)) {
-                window.location.href = 'https://play.google.com/store/apps/details?id=com.loopic.app';
+                window.location.href = 'https://play.google.com/store/apps/details?id=io.getloop.app';
             } else {
-                alert('Vui lòng tải app từ App Store hoặc Google Play');
+                alert('Please download the app from App Store or Google Play');
             }
         }
         
