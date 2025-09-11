@@ -3,6 +3,25 @@
 <head>
     <title>Kết bạn trên Loop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Open Graph Meta Tags for Messenger -->
+    <meta property="og:title" content="Add me on Loop">
+    <meta property="og:description" content="You've been invited to connect on Loop! Download the app to see photos and connect with friends.">
+    <meta property="og:image" content="https://invite.loopic.net/123.png">
+    <meta property="og:url" content="https://invite.loopic.net">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Loop">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Add me on Loop">
+    <meta name="twitter:description" content="You've been invited to connect on Loop! Download the app to see photos and connect with friends.">
+    <meta name="twitter:image" content="https://invite.loopic.net/123.png">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="description" content="You've been invited to connect on Loop! Download the app to see photos and connect with friends.">
+    <meta name="keywords" content="loop, social, photos, friends, connect">
+    <meta name="robots" content="index, follow">
     <style>
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -128,6 +147,16 @@
                     console.log('Could not fetch user info:', error);
                     // Keep default message
                 });
+            }
+            
+            // Check if running in Messenger in-app browser
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.includes('messenger') || userAgent.includes('fbav') || userAgent.includes('fban')) {
+                // Show special message for Messenger users
+                const container = document.querySelector('.container');
+                const messengerNote = document.createElement('div');
+                messengerNote.innerHTML = '<p style="font-size: 14px; opacity: 0.8; margin-top: 10px;">💡 If buttons don\'t work, tap "Open in Browser" at the top</p>';
+                container.appendChild(messengerNote);
             }
         };
     </script>
