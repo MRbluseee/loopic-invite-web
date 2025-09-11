@@ -70,7 +70,7 @@
             <img src="123.png" alt="Loop Logo" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
         </div>
         <h1>Add me on Loop</h1>
-        <p>You've been invited to connect on Loop!<br>Download the app to see photos and connect with friends.</p>
+        <p id="userInfo">You've been invited to connect on Loop!<br>Download the app to see photos and connect with friends.</p>
         <a href="#" class="btn btn-primary" onclick="openApp()">Open App</a>
         <a href="#" class="btn" onclick="downloadApp()">Download App</a>
     </div>
@@ -103,6 +103,33 @@
             const path = window.location.pathname;
             return path.split('/').pop() || 'unknown';
         }
+        
+        // Load user info when page loads
+        window.onload = function() {
+            const userId = getUserId();
+            if (userId !== 'unknown') {
+                // Try to fetch user info from Supabase
+                fetch(`https://your-supabase-url.supabase.co/rest/v1/users?id=eq.${userId}&select=display_name,username`, {
+                    headers: {
+                        'apikey': 'your-anon-key',
+                        'Authorization': 'Bearer your-anon-key'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        const user = data[0];
+                        const userName = user.display_name || user.username || 'User';
+                        document.getElementById('userInfo').innerHTML = 
+                            `You've been invited to connect with <strong>${userName}</strong> on Loop!<br>Download the app to see photos and connect with friends.`;
+                    }
+                })
+                .catch(error => {
+                    console.log('Could not fetch user info:', error);
+                    // Keep default message
+                });
+            }
+        };
     </script>
 </body>
 </html>
