@@ -99,7 +99,7 @@
             const email = getEmail();
             const name = getName();
             // Thử mở app trước
-            window.location.href = `loopic://friend-request/${email}?email=${email}&name=${encodeURIComponent(name)}`;
+            window.location.href = `loopic://friend-request/${email}?name=${encodeURIComponent(name)}`;
             
             // Fallback sau 2 giây
             setTimeout(() => {
